@@ -1,16 +1,19 @@
+import Dashboard from "./views/Dashboard.js"
+import Posts from "./views/Posts.js"
+import Settings from "./views/Settings.js"
+import { addOrRemoveActiveClass } from './helpers/index.js'
 
 const navigateTo = url => {
   history.pushState(null, null, url)
-  router()
+  router()  
 }
-import Dashboard from "./views/Dashboard.js"
 
 
 const router = async () => {
   const routes = [
     { path: '/', view: Dashboard },
-    // { path: '/posts', view: () => console.log('Posts') },
-    // { path: '/settings', view: () => console.log('Settings') }
+    { path: '/posts', view: Posts },
+    { path: '/settings', view: Settings }
   ]
 
   const potentialMatches = routes.map(route => {
@@ -27,19 +30,28 @@ const router = async () => {
       route: routes[0],
       isMatch: true
     }
-  }
+  }  
   
-  const view = new match.route.view()  
+  const view = new match.route.view() 
 
-  document.getElementById('app').innerHTML = await view.getHTML()
+  document.getElementById('app').innerHTML = await view.getHTML()    
 }
 
-window.addEventListener('popstate', router)
+window.addEventListener('popstate', () => {
+  router()
+  addOrRemoveActiveClass(location.href)
+})
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {  
+
+  addOrRemoveActiveClass(location.href)
+
   document.body.addEventListener('click', e => {
     if(e.target.matches('[data-link]')) {
-      e.preventDefault()     
+      e.preventDefault()
+
+      addOrRemoveActiveClass(e.target.href)
+
       navigateTo(e.target.href)
     }
   })

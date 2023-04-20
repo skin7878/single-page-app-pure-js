@@ -1,0 +1,46 @@
+:root {
+  --nav-width: 12.5rem;
+}
+
+body {
+  margin-left: var(--nav-width);
+  font-family: Quicksand, sans-serif;
+  font-size: 1.15rem;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 2rem;
+  width: var(--nav-width);
+  height: 100vh;
+  background: #312020;
+}
+
+.nav__link {
+  display: block;
+  padding: 0.75rem 2rem;
+  text-decoration: none;
+  color: #eeeeee;
+  font-weight: 500;
+  margin-bottom: .5rem;
+}
+
+.nav__link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#app {
+  margin: 2rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+a {
+  color: #009579;
+}

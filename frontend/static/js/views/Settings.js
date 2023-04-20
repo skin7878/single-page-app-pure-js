@@ -3,14 +3,14 @@ import AbstractView from "./AbstractView.js"
 export default class extends AbstractView {
   constructor() {
     super()
-    this.setTitle('Dashboard')
+    this.setTitle('Settings')
   }
 
   async getHTML() {
     return `
-      <h1>Hi User. You're at Home page.</h1>
+      <h1>It's a Settings page</h1>
       <p>
-        <a href="/posts" data-link>View recent posts</a>
+        <a href="/" data-link>Back Home</a>
       </p>
     `
   }

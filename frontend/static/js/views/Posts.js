@@ -1,9 +1,10 @@
 import AbstractView from './AbstractView.js'
 import { getData } from '../api/index.js'
 
-export default class extends AbstractView {
-  constructor() {
-    super()
+export default class extends AbstractView { 
+  
+  constructor(params) {
+    super(params)
     this.setTitle('Posts')
     this.posts = []
     this.error = ''
@@ -26,7 +27,7 @@ export default class extends AbstractView {
     return `      
       <h1>Welcome to the Posts page</h1>
       ${this.posts
-        .map((post, index) => `<p>${index + 1}) ${post.title}</p>`)
+        .map((post, index) => `<p><a href="/posts/${post.id}" data-link>${index + 1}) ${post.title.charAt(0).toUpperCase() + post.title.slice(1)}</a></p>`)
         .join('')}
       <p>
         <a href="/" data-link>Back Home</a>
